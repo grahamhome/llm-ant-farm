@@ -2,6 +2,12 @@
 ## Overview
 I will create my own version of the Stanford experiment "Generative Agents: Interactive Simulacra of Human Behavior" in Python and run it with a local LLM such as Alpaca. I will then perform experiments on it to attempt to reproduce the emergent behaviors observed in the Stanford experiment such as information diffusion, collaborative planning & coordination, and more (collective problem-solving, evolution of agent attitudes)
 
+## Goals
+- Replicate the Stanford experiment: obtain similar outcomes in terms of information diffusion, agent autonomy, agent ability to reflect & provide accurate information based on knowledge when interviewed.
+- Go beyond the Stanford experiment:
+    - Introduce adversarial relationships between agents e.g. competition for scarce resources & observe behavior
+    - Create a unique LLM instance for each agent trained on that agent's memories & prompt it for agent actions & dialog. (Solve problem of only using some memories for each action/dialog prompt). Retrain each LLM with new memories each night.
+
 ## Requirements
 This program is composed of two top-level component types:
 
@@ -61,10 +67,3 @@ This program is composed of two top-level component types:
             - E.g. environment objects have changed state -> convert object trees & states to syntax and add to agent memory
             - E.g. Another agent has entered an agent's environment -> Parse that part of the environment's tree to syntax and add to agent's memory.
         - Update all agents' memories with the current date and time (incremented from previous world loop)
-  
-## Goals
-- Replicate the Stanford experiment: obtain similar outcomes in terms of information diffusion, agent autonomy, agent ability to reflect & provide accurate information based on knowledge when interviewed.
-- Go beyond the Stanford experiment:
-    - Introduce adversarial relationships between agents e.g. competition for scarce resources & observe behavior
-    - Create a unique LLM instance for each agent trained on that agent's memories & prompt it for agent actions & dialog. (Solve problem of only using some memories for each action/dialog prompt). Retrain each LLM with new memories each night.
-    
