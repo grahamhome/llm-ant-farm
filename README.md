@@ -68,3 +68,17 @@ This program is composed of two top-level component types:
             - E.g. environment objects have changed state -> convert object trees & states to syntax and add to agent memory
             - E.g. Another agent has entered an agent's environment -> Parse that part of the environment's tree to syntax and add to agent's memory.
         - Update all agents' memories with the current date and time (incremented from previous world loop)
+        
+## Notes
+### Planned development stack
+- LLaMA for LLM 
+- Python for agent & world logic
+- Redis for world state & agent memory storage
+    - Support for embedded vector sorting & similarity scoring
+- Eventually, PyGame for visual display of world & agent state
+
+### Planned development schedule
+1. Write and test Python-based agent and world logic
+1.1. Test with human-produced responses for agent actions, memory querying, reflections.
+2. Add LLM for agent actions, memory querying & reflections
+3. Add visual display of world & agent state.
