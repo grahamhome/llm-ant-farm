@@ -1,4 +1,4 @@
-# AI Ant Farm
+# LLM Ant Farm
 ## Overview
 I will create my own version of the Stanford experiment "Generative Agents: Interactive Simulacra of Human Behavior" in Python and run it with a local LLM such as Alpaca. I will then perform experiments on it to attempt to reproduce the emergent behaviors observed in the Stanford experiment such as information diffusion, collaborative planning & coordination, and more (collective problem-solving, evolution of agent attitudes)
 
