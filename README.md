@@ -79,6 +79,6 @@ This program is composed of two top-level component types:
 
 ### Planned development schedule
 1. Write and test Python-based agent and world logic
-1.1. Test with human-produced responses for agent actions, memory querying, reflections.
-2. Add LLM for agent actions, memory querying & reflections
-3. Add visual display of world & agent state.
+    1. Test with human-produced responses for agent actions, memory querying, reflections.
+1. Add LLM for agent actions, memory querying & reflections
+1. Add visual display of world & agent state.
