@@ -62,3 +62,9 @@ This program is composed of two top-level component types:
             - E.g. Another agent has entered an agent's environment -> Parse that part of the environment's tree to syntax and add to agent's memory.
         - Update all agents' memories with the current date and time (incremented from previous world loop)
   
+## Goals
+- Replicate the Stanford experiment: obtain similar outcomes in terms of information diffusion, agent autonomy, agent ability to reflect & provide accurate information based on knowledge when interviewed.
+- Go beyond the Stanford experiment:
+    - Introduce adversarial relationships between agents e.g. competition for scarce resources & observe behavior
+    - Create a unique LLM instance for each agent trained on that agent's memories & prompt it for agent actions & dialog. (Solve problem of only using some memories for each action/dialog prompt). Retrain each LLM with new memories each night.
+    
