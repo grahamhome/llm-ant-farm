@@ -57,6 +57,7 @@ This program is composed of two top-level component types:
 - Python for agent & world logic
 - Redis for world state & agent memory storage
     - Support for embedded vector sorting & similarity scoring
+    - Store world state as JSON
 - Eventually, PyGame for visual display of world & agent state
 
 ### Planned development schedule
