@@ -36,25 +36,7 @@ This program is composed of two top-level component types:
 ### World
 - There is 1 world.
 - The world contains a tree structure which is composed of all the elements of the world, including agents. Parent elements physically contain child elements. Elements may have any number of states and must be in 1 state at any time. If they have no states they are considered to be in a default state at all times.
-    - Example Subtree: 
- ~~~
- 
-                  Marion's House
-			|
-		   ----------------------
-		   |			|
-	Marion's Bedroom     	 Marion's Kitchen
-		|		   		|		
-	  -------------			    ---------------------	
-	  |	      |			    |			|
-    Marion's Bed    Marion's Bookshelf      Stove (on/off)    Cupboard (open/closed)
-    	  |		         |			           |
-    -------------	      -------------		         -------
-    |	      	|	      |		  |		         |     |
- Marion       Woofy 	     A Brief      Generative Agents     Dish   Spoon   
- (agent)   (Marion's dog)    History of   research paper
-   	                     Time
-~~~                   
+    - Example Subtree: ![world subtree](world-subtree.png)               
 - The world has a loop routine
     - Each iteration performs the following tasks:
         - Run each agent's loop 1 time (ideally run all agents in parallel)
