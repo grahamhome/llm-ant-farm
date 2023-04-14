@@ -41,10 +41,10 @@ This program is composed of two top-level component types:
     - Each iteration performs the following tasks:
         - Run each agent's loop 1 time (ideally run all agents in parallel)
         - Update the world state based on each agent's output behavor for that loop iteration
-            - E.g. "Marion goes to the bodega" -> move Marion along path towards bodega at standard agent speed
-            - E.g. "Marion reads A Brief History of Time" -> Add ABHoT text (summarized? amount determined by agent reading speed * time step duration?) to Marion's memory
-            - E.g. "Marion says 'I am currently reading A Brief History of Time' to June" -> Add this phrase to Marion and June's memories
-            - E.g. "Marion opens the cupboard" -> Update cupboard, set state = open, update agent's memories with cupboard subtree converted to syntax ("the cupboard contains a dish and a spoon)
+            - E.g. "Graham goes to the bodega" -> move Graham along path towards bodega at standard agent speed
+            - E.g. "Graham reads A Brief History of Time" -> Add ABHoT text (summarized? amount determined by agent reading speed * time step duration?) to Graham's memory
+            - E.g. "Graham says 'I am currently reading A Brief History of Time' to Jose" -> Add this phrase to Graham and Jose's memories
+            - E.g. "Graham opens the cupboard" -> Update cupboard, set state = open, update agent's memories with cupboard subtree converted to syntax ("the cupboard contains a dish and a spoon)
         - Update each agent's memories with their current perceptions if they have changed
             - E.g. agent has moved to a new location -> convert agent's environment tree to syntax and add to agent memory
             - E.g. environment objects have changed state -> convert object trees & states to syntax and add to agent memory
