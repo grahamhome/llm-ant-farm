@@ -17,6 +17,7 @@ This program is composed of two top-level component types:
 - There are as many agents as I decide to create for each experiment.
 - Agents have a summary description which comprise the initial entries in their memory stream.
 - Agents have a memory stream: A log of their actions, utterances, and observations.
+    - **Idea**: [Redis Streams](https://redis.io/docs/data-types/streams-tutorial/) seem like a great fit for this.
     - Agents have the ability to query their memory stream for memories that are related to any other memory (the "query memory").
     - Memory relatedness is based on 3 factors:
         - Recency: Time delta between memory last access datetime and current datetime
@@ -41,7 +42,7 @@ This program is composed of two top-level component types:
     - Example Subtree: ![world subtree](world-subtree.png)               
 - The world has a loop routine
     - Each iteration performs the following tasks:
-        - Run each agent's loop 1 time (ideally run all agents in parallel)
+        - Run each agent's loop 1 time (ideally run all agents in parallel, but agents engaged in conversation will have to take turns)
         - Update the world state based on each agent's output behavor for that loop iteration
             - E.g. "Graham goes to the bodega" -> move Graham along path towards bodega at standard agent speed
             - E.g. "Graham reads A Brief History of Time" -> Add ABHoT text (summarized? amount determined by agent reading speed * time step duration?) to Graham's memory
