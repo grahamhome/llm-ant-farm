@@ -23,6 +23,7 @@ This program is composed of two top-level component types:
             - In the Stanford experiment this score was calculated one time by the LLM - is there a better way e.g. not using LLM & updating score over time?
 	- Relevance - cosine similarity between embedding vector of the memory and embedding vector of the query memory
 	    - In the Stanford experiment the embedding vectors were created by the LLM - is there a better way?
+            - [Yes!](https://www.sbert.net/index.html)
 - Agents have a loop routine:
     - Reflect: If the sum of the importance scores of the agent's recent memory exceed a threshold, create a new record in the agent's memory stream by inputting the important memories to the LLM and asking for a higher-level observation.
     - Plan: If the agent has no plan (most recent plan has completed), create a new plan by prompting the LLM with the agent's summary description and a summary of their previous day (user-generated for day o). Add the plan to the agent's memory stream.
