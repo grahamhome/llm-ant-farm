@@ -9,7 +9,8 @@ I will create my own version of the Stanford experiment "Generative Agents: Inte
     - Create a unique LLM instance for each agent trained on that agent's memories & prompt it for agent actions & dialog. (Solve problem of only using some memories for each action/dialog prompt). Retrain each LLM with new memories each night.
     - Give agents goals / problems to solve & resources they can use to solve them.
     - Perform social science experiments and game theory experiments e.g. prisoners' dilemma. 
-
+    - Give agents a "story" or set of personal beliefs and the desire to change them, see if they can through experience
+  
 ## Requirements
 This program is composed of two top-level component types:
 
@@ -23,6 +24,7 @@ This program is composed of two top-level component types:
         - Recency: Time delta between memory last access datetime and current datetime
         - Importance: A score indicating the importance of the memory to the agent
             - In the Stanford experiment this score was calculated one time by the LLM - is there a better way e.g. not using LLM & updating score over time?
+            - Is there a way to calculate importance with respect to the individual agent? E.g. prompt LLM with agent's most important memories and new memory to get score
 	- Relevance - cosine similarity between embedding vector of the memory and embedding vector of the query memory
 	    - In the Stanford experiment the embedding vectors were created by the LLM - is there a better way?
             - [Yes!](https://www.sbert.net/index.html)

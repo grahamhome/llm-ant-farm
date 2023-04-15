@@ -1,8 +1,41 @@
+from datetime import datetime
+
+from sentence_transformers import SentenceTransformer, util
+from torch import Tensor
+
+model = SentenceTransformer("all-MiniLM-L6-v2")
+
 class Memory:
     def __init__(self, content: str, importance: int):
         self.content = content
         self.importance = importance
-        # TODO store creation time, last access time, embedding vector
+        self.created = datetime.now()
+        self.last_access = self.created
+
+    def access_age(self):
+        return datetime.now() - self.last_access
+
+    def relevance(self, other_memory: "Memory"):
+        """
+        Returns the memory's relevance to another memory by calculating the cosine similarity between the
+        embedding vectors of the two memories.
+        """
+        util.cos_sim(self.embedding_vector(), other_memory.embedding_vector())
+
+    def embedding_vector(self) -> Tensor:
+        """
+        Returns the embedding vector of the memory's content.
+        """
+        return model.encode(self.content)
+
+    def retrieval_score(self, other_memory: "Memory"):
+        """
+        Return the retrieval score for the memory with respect to another memory.
+        Retrieval score = recency_weight * recency + importance_weight * importance + relevance_weight * relevance(other_memory)
+        :param other_memory:
+        :return:
+        """
+        ...
 
 
 class PlanItem(Memory):

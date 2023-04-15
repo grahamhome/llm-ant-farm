@@ -1,10 +1,16 @@
+from redis.client import Redis
 from agent.memory.memory import Memory
 
+# TODO Switch to SQLAlchemy so I can query by different attributes e.g. time ranges more easily
+redis = Redis(host="localhost", port=6379, decode_responses=True)
 
 class MemoryStream:
 
-    def __init__(self):
-        ...
+    def __init__(self, agent_id):
+        self.stream_name = agent_id
+
+    def store_memory(self, new_memory: Memory):
+        redis.xadd(name=self.stream_name, fields=new_memory.__dict__)
 
     def ready_to_reflect(self) -> bool:
         """
@@ -23,5 +29,5 @@ class MemoryStream:
         ...
 
     def query(self, query_memory: Memory) -> list[Memory]:
-        # TODO: Get related memories by embedding vector comparison
-        ...
+        # TODO: Get related memories (memories with highest retrieval scores relative to query memory)
+        redis.xrange(name=self.stream_name)
