@@ -8,6 +8,7 @@ I will create my own version of the Stanford experiment "Generative Agents: Inte
     - Introduce adversarial relationships between agents e.g. competition for scarce resources & observe behavior
     - Create a unique LLM instance for each agent trained on that agent's memories & prompt it for agent actions & dialog. (Solve problem of only using some memories for each action/dialog prompt). Retrain each LLM with new memories each night.
     - Give agents goals / problems to solve & resources they can use to solve them.
+    - Perform social science experiments and game theory experiments e.g. prisoners' dilemma. 
 
 ## Requirements
 This program is composed of two top-level component types:
