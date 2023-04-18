@@ -1,7 +1,6 @@
 from redis.client import Redis
 from agent.memory.memory import Memory
 
-# TODO Switch to SQLAlchemy so I can query by different attributes e.g. time ranges more easily
 redis = Redis(host="localhost", port=6379, decode_responses=True)
 
 class MemoryStream:

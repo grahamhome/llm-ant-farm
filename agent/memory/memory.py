@@ -11,6 +11,7 @@ class Memory:
         self.importance = importance
         self.created = datetime.now()
         self.last_access = self.created
+        self.vector = model.encode(self.content)
 
     def access_age(self):
         return datetime.now() - self.last_access
@@ -20,13 +21,7 @@ class Memory:
         Returns the memory's relevance to another memory by calculating the cosine similarity between the
         embedding vectors of the two memories.
         """
-        util.cos_sim(self.embedding_vector(), other_memory.embedding_vector())
-
-    def embedding_vector(self) -> Tensor:
-        """
-        Returns the embedding vector of the memory's content.
-        """
-        return model.encode(self.content)
+        util.cos_sim(self.vector, other_memory.vector)
 
     def retrieval_score(self, other_memory: "Memory"):
         """

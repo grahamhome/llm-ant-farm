@@ -9,6 +9,7 @@ license = "MIT"
 python = "^3.10"
 redis = "^4.5.4"
 sentence-transformers = "^2.2.2"
+redis-om = "^0.1.2"
 
 [tool.poetry.dev-dependencies]
 black = "^23.3.0"
