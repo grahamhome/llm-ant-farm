@@ -18,7 +18,6 @@ This program is composed of two top-level component types:
 - There are as many agents as I decide to create for each experiment.
 - Agents have a summary description which comprise the initial entries in their memory stream.
 - Agents have a memory stream: A log of their actions, utterances, and observations.
-    - **Idea**: [Redis Streams](https://redis.io/docs/data-types/streams-tutorial/) seem like a great fit for this.
     - Agents have the ability to query their memory stream for memories that are related to any other memory (the "query memory").
     - Memory relatedness is based on 3 factors:
         - Recency: Time delta between memory last access datetime and current datetime
@@ -29,6 +28,7 @@ This program is composed of two top-level component types:
 	    - In the Stanford experiment the embedding vectors were created by the LLM - is there a better way?
             - [Yes!](https://www.sbert.net/index.html)
 - Agents have a loop routine:
+    - (Potentially) Update Importance Scores: Update the importance scores of all memories (TBD: I am not sure how importance scores are calculated yet) 
     - Reflect: If the sum of the importance scores of the agent's recent memory exceed a threshold, create a new record in the agent's memory stream by inputting the important memories to the LLM and asking for a higher-level observation.
     - Plan: If the agent has no plan (most recent plan has completed), create a new plan by prompting the LLM with the agent's summary description and a summary of their previous day (user-generated for day o). Add the plan to the agent's memory stream.
          - Plan is composed recursively by first generating high-level (e.g. 5-8 tasks) plan, then recursively breaking down each high-level task into steps and adding them to the plan.
@@ -59,8 +59,7 @@ This program is composed of two top-level component types:
 ## Notes
 ### Planned development stack
 - LLaMA for LLM 
-- Python for agent & world logic
-- Redis for world state & agent memory storage
+- Python & LangChain for agent & world logic
     - Support for embedded vector sorting & similarity scoring
     - Store world state as JSON
 - Eventually, PyGame for visual display of world & agent state
@@ -70,3 +69,7 @@ This program is composed of two top-level component types:
     1. Test with human-produced responses for agent actions, memory querying, reflections.
 1. Add LLM for agent actions, memory querying & reflections
 1. Add visual display of world & agent state.
+
+### Progress:
+- 5/12/23 Using LangChain, added support for generative agents which can produce in-character dialog with another character and in-character actions.
+  - Memories are currently selected using only vector similarity
