@@ -28,15 +28,21 @@ _DIALOG_PROMPT = """Using these memories if they are relevant, provide the next 
 
 _DIALOG_PROMPT_END = """"{input}". What is your response?"""
 
+
 class GenerativeAgent:
     """An LLM agent which generates new plans, actions and dialog based on current and past experiences"""
+
     def __init__(self, name: str, initial_memories_filepath: str = None, debug=os.environ.get("DEBUG", False)):
         """
         Set up the agent's vector-store-based memory and insert any initial memories.
         """
         self.name = name
         self.debug = debug
-        self.memory = VectorStoreRetrieverMemory(retriever=FAISS(OpenAIEmbeddings().embed_query, faiss.IndexFlatL2(EMBEDDING_SIZE), InMemoryDocstore({}), {}).as_retriever(search_kwargs=dict(k=3)))
+        self.memory = VectorStoreRetrieverMemory(
+            retriever=FAISS(
+                OpenAIEmbeddings().embed_query, faiss.IndexFlatL2(EMBEDDING_SIZE), InMemoryDocstore({}), {}
+            ).as_retriever(search_kwargs=dict(k=int(environ.get("AGENT_MEMORIES_PER_PROMPT", 3))))
+        )
         # Load initial memories
         if initial_memories_filepath:
             self._load_memories(initial_memories_filepath)
@@ -52,16 +58,26 @@ class GenerativeAgent:
         """
         Generate an action in character, drawing upon relevant memories.
         """
-        return ConversationChain(llm=LLM, prompt=PromptTemplate(
-    input_variables=["history", "input"],
-    template=f"Your name is {self.name}. {_DEFAULT_TEMPLATE} {_ACTION_PROMPT}"
-), memory=self.memory, verbose=self.debug).predict(input=question)
+        return ConversationChain(
+            llm=LLM,
+            prompt=PromptTemplate(
+                input_variables=["history", "input"],
+                template=f"Your name is {self.name}. {_DEFAULT_TEMPLATE} {_ACTION_PROMPT}",
+            ),
+            memory=self.memory,
+            verbose=self.debug,
+        ).predict(input=question)
 
     def get_dialog(self, agent_name, prompt: str):
         """
         In character, generate a line of dialog in response to the given prompt from the given character, drawing upon relevant memories.
         """
-        return ConversationChain(llm=LLM, prompt=PromptTemplate(
-            input_variables=["history", "input"],
-            template=f"Your name is {self.name}. {_DEFAULT_TEMPLATE} {_DIALOG_PROMPT.format(name=agent_name)} {_DIALOG_PROMPT_END}"
-        ), memory=self.memory, verbose=self.debug).predict(input=prompt)
+        return ConversationChain(
+            llm=LLM,
+            prompt=PromptTemplate(
+                input_variables=["history", "input"],
+                template=f"Your name is {self.name}. {_DEFAULT_TEMPLATE} {_DIALOG_PROMPT.format(name=agent_name)} {_DIALOG_PROMPT_END}",
+            ),
+            memory=self.memory,
+            verbose=self.debug,
+        ).predict(input=prompt)
