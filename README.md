@@ -24,7 +24,7 @@ This program is composed of two top-level component types:
         - Importance: A score indicating the importance of the memory to the agent
             - In the Stanford experiment this score was calculated one time by the LLM - is there a better way e.g. not using LLM & updating score over time?
             - Is there a way to calculate importance with respect to the individual agent? E.g. prompt LLM with agent's most important memories and new memory to get score
-	- Relevance - cosine similarity between embedding vector of the memory and embedding vector of the query memory
+	    - Relevance - cosine similarity between embedding vector of the memory and embedding vector of the query memory
 	    - In the Stanford experiment the embedding vectors were created by the LLM - is there a better way?
             - [Yes!](https://www.sbert.net/index.html)
 - Agents have a loop routine:
@@ -66,10 +66,12 @@ This program is composed of two top-level component types:
 
 ### Planned development schedule
 1. Write and test Python-based agent and world logic
-    1. Test with human-produced responses for agent actions, memory querying, reflections.
-1. Add LLM for agent actions, memory querying & reflections
 1. Add visual display of world & agent state.
 
 ### Progress:
 - 5/12/23 Using LangChain, added support for generative agents which can produce in-character dialog with another character and in-character actions.
   - Memories are currently selected using only vector similarity
+
+### Next steps:
+- Experiment with & refine agent logic
+- Write world state and event loop logic
